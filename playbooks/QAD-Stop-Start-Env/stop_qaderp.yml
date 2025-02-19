@@ -1,0 +1,11 @@
+- name: Stop QADERP service using yab
+  hosts: target_servers
+  become: yes
+  become_user: mfg
+  tasks:
+    - name: Run yab to stop service
+      shell: |
+        cd /sw/apps/qaderp/
+        alias yab="/sw/apps/qaderp/yab -a:/sw/apps/qaderp"
+        yab -threads:10 stop
+      executable: /bin/bash

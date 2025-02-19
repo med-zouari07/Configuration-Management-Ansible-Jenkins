@@ -1,0 +1,58 @@
+---
+- name: Install Docker and Docker Compose on RHEL 8
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install required packages (yum-utils)
+      yum:
+        name: yum-utils
+        state: present
+
+    - name: Add Docker repository
+      command: >
+        yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      args:
+        creates: /etc/yum.repos.d/docker-ce.repo
+
+    - name: Install Docker packages (docker-ce, docker-ce-cli, containerd.io)
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+
+    - name: Enable Docker service at boot
+      service:
+        name: docker
+        enabled: yes
+
+    - name: Verify Docker installation
+      command: docker --version
+      register: docker_version
+      changed_when: false
+
+    - name: Debug Docker version
+      debug:
+        var: docker_version.stdout
+
+    - name: Download Docker Compose binary
+      get_url:
+        url: https://github.com/docker/compose/releases/download/v2.32.4/docker-compose-linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: '0755'
+
+    - name: Verify Docker Compose installation
+      command: docker-compose --version
+      register: docker_compose_version
+      changed_when: false
+
+    - name: Debug Docker Compose version
+      debug:
+        var: docker_compose_version.stdout

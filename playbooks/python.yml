@@ -1,0 +1,15 @@
+---
+- name: Install Python on RHEL 8
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Ensure Python 3 is installed
+      package:
+        name: python3
+        state: present
+
+    - name: Ensure pip is installed
+      command: python3 -m ensurepip --upgrade
+      args:
+        creates: /usr/bin/pip3

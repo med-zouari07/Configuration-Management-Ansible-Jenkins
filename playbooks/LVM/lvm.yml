@@ -1,0 +1,20 @@
+- name: Enlarge /var logical volume
+  hosts: all
+  become: yes
+  tasks:
+    - name: Include the storage role for LVM management
+      ansible.builtin.include_role:
+        name: redhat.rhel_system_roles.storage  # Ensure role is installed and path is correct
+
+    - name: Enlarge the /var logical volume to 30GB
+      ansible.builtin.set_fact:
+        storage_pools:
+          - name: esb  # Verify this is your VG name
+            volumes:
+              - name: var  # Verify this is your LV name
+                size: 30G  # Desired size
+                mount_point: /var  # Correct mount point
+
+    - name: Apply the changes
+      ansible.builtin.include_role:
+        name: redhat.rhel_system_roles.storage  # Ensure role is applied correctly
