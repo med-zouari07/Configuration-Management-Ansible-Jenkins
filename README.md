@@ -1,78 +1,65 @@
-Configuration Management with Ansible and Jenkins
-Overview
-This repository contains the necessary configuration files and playbooks for managing infrastructure using Ansible and automating tasks with Jenkins. The setup includes various Jenkins pipelines for different tasks such as Docker, LVM, Nginx, and more.
+# Configuration Management with Ansible and Jenkins
 
-Author
-Mohamed ZOUARI
-GitHub: med-zouari07
+## Overview
+This repository contains configuration files and playbooks for managing infrastructure using Ansible and automating tasks with Jenkins. The setup includes various Jenkins pipelines for different tasks such as Docker, LVM, Nginx, and more.
 
-Repository Structure
-inventory: Contains the inventory files for Ansible, defining the hosts and groups.
+## Author
+**Mohamed ZOUARI**  
+GitHub: [med-zouari07](https://github.com/med-zouari07)
 
-playbooks: Includes Ansible playbooks for automating various tasks.
+## Repository Structure
+```
+├── inventory                # Inventory files defining hosts and groups
+├── playbooks                # Ansible playbooks for automation
+├── Jenkinsfile-Docker       # Jenkins pipeline for Docker tasks
+├── Jenkinsfile-LVM          # Jenkins pipeline for LVM management
+├── Jenkinsfile-Nginx        # Jenkins pipeline for Nginx setup
+├── Jenkinsfile-Password     # Jenkins pipeline for password management
+├── Jenkinsfile-Password-mfg # Password management pipeline for manufacturing
+├── Jenkinsfile-Start-Env    # Pipeline for starting environments
+├── Jenkinsfile-Stop-Env     # Pipeline for stopping environments
+├── Jenkinsfile-Wine         # Pipeline for Wine-related tasks
+├── ansible.cfg              # Ansible configuration file
+├── LICENSE                  # License file
+└── README.md                # Project overview (this file)
+```
 
-Jenkinsfile-Docker: Jenkins pipeline configuration for Docker-related tasks.
+## Getting Started
 
-Jenkinsfile-LVM: Jenkins pipeline configuration for Logical Volume Management (LVM) tasks.
+### Prerequisites
+Ensure the following tools are installed:
+- **Ansible**: Required for executing playbooks.
+- **Jenkins**: A running Jenkins server is needed.
+- **Docker** *(optional)*: If using Docker-related Jenkins pipelines.
+- **LVM Tools** *(optional)*: If using LVM-related Jenkins pipelines.
+- **Nginx** *(optional)*: If using Nginx-related Jenkins pipelines.
 
-Jenkinsfile-Nginx: Jenkins pipeline configuration for Nginx setup and management.
-
-Jenkinsfile-Password: Jenkins pipeline configuration for password management.
-
-Jenkinsfile-Password-mfg: Jenkins pipeline configuration for password management in a manufacturing environment.
-
-Jenkinsfile-Start-Env: Jenkins pipeline configuration for starting environments.
-
-Jenkinsfile-Stop-Env: Jenkins pipeline configuration for stopping environments.
-
-Jenkinsfile-Wine: Jenkins pipeline configuration for Wine-related tasks.
-
-ansible.cfg: Ansible configuration file for customizing Ansible behavior.
-
-README.md: This file, providing an overview of the repository.
-
-Getting Started
-Prerequisites
-Ansible: Ensure Ansible is installed on your system.
-
-Jenkins: A Jenkins server should be set up and running.
-
-Docker (optional): Required if using Docker-related Jenkins pipelines.
-
-LVM Tools (optional): Required if using LVM-related Jenkins pipelines.
-
-Nginx (optional): Required if using Nginx-related Jenkins pipelines.
-
-Usage
-Clone the Repository:
-
-bash
-Copy
+### Usage
+#### Clone the Repository
+```bash
 git clone https://github.com/med-zouari07/Configuration-Management-Ansible-Jenkins.git
 cd Configuration-Management-Ansible-Jenkins
-Configure Ansible:
+```
 
-Modify the ansible.cfg file to suit your environment.
+#### Configure Ansible
+- Modify the `ansible.cfg` file to suit your environment.
+- Update the `inventory` file with target hosts.
 
-Update the inventory file with your target hosts.
-
-Run Ansible Playbooks:
-
-Navigate to the playbooks directory and execute the desired playbook:
-
-bash
-Copy
+#### Run Ansible Playbooks
+Navigate to the playbooks directory and execute a playbook:
+```bash
 ansible-playbook -i ../inventory <playbook-name>.yml
-Jenkins Pipelines:
+```
 
-Import the Jenkinsfiles into your Jenkins server.
+#### Jenkins Pipelines
+- Import the `Jenkinsfile-*` files into your Jenkins server.
+- Configure the pipelines as needed (Docker, LVM, Nginx, etc.).
 
-Configure the pipelines as needed for Docker, LVM, Nginx, etc.
-
-Contributing
+## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+## License
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
 
-For any questions or issues, please contact the author: Mohamed ZOUARI.
+For any questions or issues, please contact the author: **Mohamed ZOUARI**.
+
